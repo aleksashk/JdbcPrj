@@ -1,8 +1,8 @@
-package com.aleksandrphilimonov.dao;
+package com.aleksandrphilimonov.service;
 
 import java.math.BigDecimal;
 
-public class AccountModel {
+public class AccountDTO {
     private long id;
     private String title;
     private BigDecimal balance;
@@ -42,8 +42,8 @@ public class AccountModel {
 
     @Override
     public String toString() {
-        return "AccountModel{" +
-                "accountId=" + id +
+        return "AccountDTO{" +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", balance=" + balance +
                 ", userId=" + userId +

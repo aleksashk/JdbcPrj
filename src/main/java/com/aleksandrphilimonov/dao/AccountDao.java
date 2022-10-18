@@ -39,7 +39,7 @@ public class AccountDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 accountModel = new AccountModel();
-                accountModel.setAccountId(resultSet.getLong(1));
+                accountModel.setId(resultSet.getLong(1));
                 accountModel.setTitle(resultSet.getString(2));
                 accountModel.setBalance(new BigDecimal(resultSet.getLong(3)));
                 accountModel.setUserId(resultSet.getLong(4));
