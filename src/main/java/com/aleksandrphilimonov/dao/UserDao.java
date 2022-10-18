@@ -47,7 +47,7 @@ public class UserDao {
     }
 
     public UserModel insert(String email, String hash) {
-        UserModel userModel = null;
+        UserModel userModel;
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "insert into service_user(email, password) " +
@@ -60,14 +60,16 @@ public class UserDao {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 userModel = new UserModel();
+                userModel.setId(resultSet.getLong(1));
                 userModel.setEmail(resultSet.getString("email"));
                 userModel.setPassword(resultSet.getString("hash"));
+
                 return userModel;
             } else {
                 throw new CustomException("Invalid data. New ID didn't generate.");
             }
         } catch (SQLException e) {
-            throw new CustomException("Invalid data. New ID didn't generate.");
+            throw new CustomException(e);
         }
     }
 }
